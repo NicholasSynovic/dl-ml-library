@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 
-from . import Data
+from dl_ml_library.abstract.data import Data
 
 
 class Dataset(ABC):
