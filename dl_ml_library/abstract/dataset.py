@@ -5,6 +5,11 @@ from . import Data
 
 
 class Dataset(ABC):
+    def __init__(self) -> None:
+        self.requestHeaders: dict[str, str] = {
+            "User-Agent": "NicholasSynovic/dl-ml-library",
+        }
+
     @abstractmethod
     def download(self) -> Path:
         pass
