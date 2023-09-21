@@ -11,9 +11,8 @@ def main() -> None:
 
     data: Data = dataset.load()
     data.trainTestValidationSplit()
-    print(data.trainingDF)
-    print(data.trainingDF_classes)
-    print(data.trainingDF_samples)
+
+    scaler.processData(data=data)
 
 
 if __name__ == "__main__":
