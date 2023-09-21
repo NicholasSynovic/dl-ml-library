@@ -9,6 +9,14 @@ class Data:
         self.testingDF: DataFrame
         self.validationDF: DataFrame
 
+        self.trainingDF_samples: DataFrame
+        self.testingDF_samples: DataFrame
+        self.validationDF_samples: DataFrame
+
+        self.trainingDF_classes: DataFrame
+        self.testingDF_classes: DataFrame
+        self.validationDF_classes: DataFrame
+
     def trainTestValidationSplit(
         self,
         trainSplit: float = 0.7,
@@ -32,3 +40,11 @@ class Data:
             random_state=seed,
             shuffle=True,
         )
+
+        self.trainingDF_classes = self.trainingDF["Class"]
+        self.testingDF_classes = self.testingDF["Class"]
+        self.validationDF_classes = self.validationDF["Class"]
+
+        self.trainingDF_samples = self.trainingDF.drop(columns="Class")
+        self.testingDF_samples = self.testingDF.drop(columns="Class")
+        self.validationDF_samples = self.validationDF.drop(columns="Class")
