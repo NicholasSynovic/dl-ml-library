@@ -7,6 +7,7 @@ import pandas
 from pandas import DataFrame
 from requests import Response, get
 
+from dl_ml_library.abstract.data import Data
 from dl_ml_library.abstract.dataset import Dataset
 
 
@@ -40,7 +41,7 @@ class Iris(Dataset):
         ]
         return files
 
-    def load(self, bezdek: bool = True) -> DataFrame:
+    def load(self, bezdek: bool = True) -> Data:
         if bezdek:
             dataFilePath: Path = Path(self.downloadPath, "bezdekIris.data")
         else:
@@ -57,4 +58,5 @@ class Iris(Dataset):
                 "Class",
             ],
         )
-        return df
+
+        return Data(df=df)
