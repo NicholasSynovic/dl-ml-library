@@ -1,15 +1,13 @@
-from abc import ABC, abstractmethod
-
 from pandas import DataFrame
 from sklearn.model_selection import train_test_split
 
 
-class Data(ABC):
+class Data:
     def __init__(self, df: DataFrame) -> None:
         self.df: DataFrame = df
-        self.trainingDF: DataFrame = None
-        self.testingDF: DataFrame = None
-        self.validationDF: DataFrame = None
+        self.trainingDF: DataFrame
+        self.testingDF: DataFrame
+        self.validationDF: DataFrame
 
     def trainTestValidationSplit(
         self,
@@ -18,6 +16,10 @@ class Data(ABC):
         testSplit: float = 0.15,
         seed: int = 42,
     ) -> None:
+        splitSum: float = trainSplit + validationSplit + testSplit
+        if splitSum != 1:
+            print("Waring: Splits do not equal 1.0")
+
         self.trainingDF, self.testingDF = train_test_split(
             self.df,
             test_size=testSplit,

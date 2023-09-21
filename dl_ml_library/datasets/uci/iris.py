@@ -7,8 +7,8 @@ import pandas
 from pandas import DataFrame
 from requests import Response, get
 
-from dl_ml_library.abstract.data import Data
 from dl_ml_library.abstract.dataset import Dataset
+from dl_ml_library.common.data import Data
 
 
 class Iris(Dataset):

@@ -3,7 +3,7 @@ from os import makedirs
 from os.path import expandvars
 from pathlib import Path
 
-from dl_ml_library.abstract.data import Data
+from dl_ml_library.common.data import Data
 
 
 class Dataset(ABC):
