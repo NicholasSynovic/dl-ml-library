@@ -3,6 +3,8 @@ from pathlib import Path
 from typing import List
 from zipfile import ZipFile
 
+import pandas
+from pandas import DataFrame
 from requests import Response, get
 
 from dl_ml_library.abstract.dataset import Dataset
@@ -38,11 +40,21 @@ class Iris(Dataset):
         ]
         return files
 
-    def load():
-        pass
+    def load(self, bezdek: bool = True) -> DataFrame:
+        if bezdek:
+            dataFilePath: Path = Path(self.downloadPath, "bezdekIris.data")
+        else:
+            dataFilePath: Path = Path(self.downloadPath, "iris.data")
 
-
-i = Iris()
-x = i.download()
-
-print(x)
+        df: DataFrame = pandas.read_csv(
+            filepath_or_buffer=dataFilePath,
+            header=None,
+            names=[
+                "Sepal Length",
+                "Sepal Width",
+                "Petal Length",
+                "Petal Width",
+                "Class",
+            ],
+        )
+        return df
