@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from os import makedirs
 from pathlib import Path
 
 from dl_ml_library.abstract.data import Data
@@ -9,6 +10,9 @@ class Dataset(ABC):
         self.requestHeaders: dict[str, str] = {
             "User-Agent": "NicholasSynovic/dl-ml-library",
         }
+
+        self.rootDownloadPath: Path = Path("$HOME/.cache/dl-ml-datasets")
+        makedirs(name=self.rootDownloadPath, exist_ok=True)
 
     @abstractmethod
     def download(self) -> Path:
