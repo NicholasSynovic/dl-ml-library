@@ -4,7 +4,6 @@ from numpy import ndarray
 from sklearn.svm import SVC
 
 from dl_ml_library.abstract.model import Model
-from dl_ml_library.common.data import Data
 
 
 class SVM(Model):
@@ -42,9 +41,6 @@ class SVM(Model):
 
     def train(self, samples: ndarray, classes: ndarray) -> None:
         self.model.fit(X=samples, y=classes)
-        # Add metrics
 
-    def inference(self, data: Data) -> None:
-        predictions = self.model.predict(X=data.testingDF_transformed_samples)
-        # Add metrics
-        print(predictions)
+    def inference(self, samples: ndarray) -> ndarray:
+        return self.model.predict(X=samples)
