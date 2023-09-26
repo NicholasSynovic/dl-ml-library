@@ -9,5 +9,5 @@ class Model(ABC):
         pass
 
     @abstractclassmethod
-    def inference(self, samples: ndarray) -> None:
+    def inference(self, samples: ndarray) -> ndarray:
         pass
