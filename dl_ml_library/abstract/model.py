@@ -5,7 +5,7 @@ from numpy import ndarray
 
 class Model(ABC):
     @abstractclassmethod
-    def train(self, samples: ndarray) -> None:
+    def train(self, samples: ndarray, classes: ndarray) -> None:
         pass
 
     @abstractclassmethod
