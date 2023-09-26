@@ -7,6 +7,9 @@ from sklearn.preprocessing import LabelEncoder
 class Data:
     def __init__(self, df: DataFrame) -> None:
         self.df: DataFrame = df
+        self.encoder: LabelEncoder = LabelEncoder()
+        self.encoder.fit(y=self.df["Class"])
+
         self.trainingDF: DataFrame
         self.testingDF: DataFrame
         self.validationDF: DataFrame
@@ -59,11 +62,12 @@ class Data:
         self.testingDF_samples = self.testingDF.drop(columns="Class")
         self.validationDF_samples = self.validationDF.drop(columns="Class")
 
-        encoder: LabelEncoder = LabelEncoder()
-        encoder.fit(y=self.df["Class"])
-
-        self.trainingDF_encoded_classes = encoder.transform(y=self.trainingDF_classes)
-        self.testingDF_encoded_classes = encoder.transform(y=self.testingDF_classes)
-        self.validationDF_encoded_classes = encoder.transform(
+        self.trainingDF_encoded_classes = self.encoder.transform(
+            y=self.trainingDF_classes
+        )
+        self.testingDF_encoded_classes = self.encoder.transform(
+            y=self.testingDF_classes
+        )
+        self.validationDF_encoded_classes = self.encoder.transform(
             y=self.validationDF_classes
         )
