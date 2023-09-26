@@ -14,6 +14,9 @@ def main() -> None:
 
     scaler.processData(data=data)
 
+    print(type(data.validationDF_transformed_samples))
+    print(data.validationDF_transformed_samples)
+
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,4 @@
+from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import train_test_split
 
@@ -12,6 +13,10 @@ class Data:
         self.trainingDF_samples: DataFrame
         self.testingDF_samples: DataFrame
         self.validationDF_samples: DataFrame
+
+        self.trainingDF_transformed_samples: ndarray
+        self.testingDF_transformed_samples: ndarray
+        self.validationDF_transformed_samples: ndarray
 
         self.trainingDF_classes: DataFrame
         self.testingDF_classes: DataFrame

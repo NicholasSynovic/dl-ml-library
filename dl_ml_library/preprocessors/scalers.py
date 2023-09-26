@@ -17,6 +17,12 @@ class BasicScaler(Preprocessor):
 
     def processData(self, data: Data) -> None:
         self.processor.fit(X=data.trainingDF_samples)
-        data.trainingDF = self.processor.transform(X=data.trainingDF_samples)
-        data.testingDF = self.processor.transform(X=data.testingDF_samples)
-        data.validationDF = self.processor.transform(X=data.validationDF_samples)
+        data.trainingDF_transformed_samples = self.processor.transform(
+            X=data.trainingDF_samples
+        )
+        data.testingDF_transformed_samples = self.processor.transform(
+            X=data.testingDF_samples
+        )
+        data.validationDF_transformed_samples = self.processor.transform(
+            X=data.validationDF_samples
+        )
