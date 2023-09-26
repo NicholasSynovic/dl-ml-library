@@ -1,5 +1,6 @@
 from typing import Literal
 
+from numpy import ndarray
 from sklearn.svm import SVC
 
 from dl_ml_library.abstract.model import Model
@@ -39,8 +40,8 @@ class SVM(Model):
             random_state=self.randomState,
         )
 
-    def train(self, data: Data) -> None:
-        self.model.fit(X=data.trainingDF_transformed_samples, y=data.trainingDF_classes)
+    def train(self, samples: ndarray, classes: ndarray) -> None:
+        self.model.fit(X=samples, y=classes)
         # Add metrics
 
     def inference(self, data: Data) -> None:
