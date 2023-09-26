@@ -1,6 +1,7 @@
 from numpy import ndarray
 from pandas import DataFrame
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 
 class Data:
@@ -21,6 +22,10 @@ class Data:
         self.trainingDF_classes: DataFrame
         self.testingDF_classes: DataFrame
         self.validationDF_classes: DataFrame
+
+        self.trainingDF_encoded_classes: ndarray
+        self.testingDF_encoded_classes: ndarray
+        self.validationDF_encoded_classes: ndarray
 
     def trainTestValidationSplit(
         self,
@@ -53,3 +58,12 @@ class Data:
         self.trainingDF_samples = self.trainingDF.drop(columns="Class")
         self.testingDF_samples = self.testingDF.drop(columns="Class")
         self.validationDF_samples = self.validationDF.drop(columns="Class")
+
+        encoder: LabelEncoder = LabelEncoder()
+        encoder.fit(y=self.df["Class"])
+
+        self.trainingDF_encoded_classes = encoder.transform(y=self.trainingDF_classes)
+        self.testingDF_encoded_classes = encoder.transform(y=self.testingDF_classes)
+        self.validationDF_encoded_classes = encoder.transform(
+            y=self.validationDF_classes
+        )
