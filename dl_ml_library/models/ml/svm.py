@@ -1,9 +1,5 @@
 from typing import Literal
 
-import numpy
-from numpy import ndarray
-from progress.bar import Bar
-from sklearn.model_selection import KFold
 from sklearn.svm import SVC
 
 from dl_ml_library.abstract.model import Model
